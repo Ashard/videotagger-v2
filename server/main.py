@@ -17,7 +17,6 @@ audio_clips_to_merge = []
 NUM_THREADS = os.cpu_count()
 PRESET="ultrafast"
 
-# os.chdir("server")
 video_clips_json_path = os.path.join("public", "temp", "videoClips.json")
 audio_clips_json_path = os.path.join("public", "temp", "audioClips.json")
 
