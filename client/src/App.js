@@ -107,9 +107,9 @@ const App = () => {
       const createVideoClipsJsonResponse = await Axios.post("http://localhost:3000/createVideoClipsJson", videoMediaClipJson);
       const createAudioClipsJsonResponse = await Axios.post("http://localhost:3000/createAudioClipsJson", audioMediaClipJson);
   
-      setStreamCreationStatus("this will take some time.. please wait");
+      setStreamCreationStatus("generating subclips for stream");
       const createStreamResponse = await Axios.get("http://localhost:3000/createStream");
-      setStreamCreationStatus("Create stream status: " + createStreamResponse.data);
+      setStreamCreationStatus("status: " + createStreamResponse.data);
 
       if (createStreamResponse.data === "success") {
         setShowStreamStatus(false);
