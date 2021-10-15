@@ -11,9 +11,6 @@ const ProgressLogger = () => {
     useEffect(() => {
         client.onmessage = (message) => {
             setProgressPercentage(message.data);
-            if (progressPercentage == "100") {
-                setProgressPercentage("0");
-            }
         }
      }, [])
 

@@ -18,25 +18,25 @@ const wss = new WebSocket.server({
     httpServer: webSocketServer
 });
 
-let changeListenerAddedToProgressLog = false;
-
 wss.on("request", function (request) {
-    connection = request.accept(null, request.origin);
+    const connection = request.accept(null, request.origin);
 
     const logFilePath = path.join(__dirname, "progress_log.json");
     options = {
         interval: 500,
     }
 
-    if (changeListenerAddedToProgressLog === false) {
-        fs.watchFile(logFilePath, options, (curr, prev) => {
-            const logFile = fs.readFileSync(logFilePath);
-            const logFileJson = JSON.parse(logFile);
+    fs.unwatchFile(logFilePath);
+    fs.watchFile(logFilePath, options, (curr, prev) => {
+        try {
+            const logFile = fs.readFileSync(logFilePath, options = { encoding: "utf-8" });
+            const logFileJson = JSON.parse([logFile]);
             connection.sendUTF(logFileJson.progress);
-        })
-    }
+        } catch (error) {
+            pass;
+        }
+    })
 
-    changeListenerAddedToProgressLog = true;
 })
 
 app.use(cors()); // initialize cors middleware for all routes **should be changed to only allow specific routes when in production**
