@@ -10,7 +10,6 @@ const http = require("http");
 /**
  * Web socket server for logger
  */
-
 const webSocketServer = http.createServer();
 webSocketServer.listen(9090);
 
